@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timeless-treasures
+  labels:
+    app: timeless-treasures
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timeless-treasures
+  template:
+    metadata:
+      labels:
+        app: timeless-treasures
+    spec:
+      containers:
+        - name: timeless-treasures
+          image: docker.io/library/timeless-treasures:1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DJANGO_DEBUG
+              value: "False"
+            - name: DJANGO_ALLOWED_HOSTS
+              value: "*"
